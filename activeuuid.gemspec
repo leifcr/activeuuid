@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "activeuuid/version"
 
 Gem::Specification.new do |s|
-  s.name        = "activeuuid"
+  s.name        = "leifcr-activeuuid"
   s.version     = Activeuuid::VERSION
   s.authors     = ["Nate Murray"]
   s.email       = ["nate@natemurray.com"]
