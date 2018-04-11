@@ -25,7 +25,11 @@ if ENV["DB"] == "mysql"
   end
 end
 
-ActiveRecord::Migrator.migrate(File.dirname(__FILE__) + "/support/migrate")
+if ActiveRecord.version.release() < Gem::Version.new('5.2.0')
+  ActiveRecord::Migrator.migrate(File.dirname(__FILE__) + "/support/migrate")
+else
+  ActiveRecord::MigrationContext.new('spec/dummy/db/migrate').migrate
+end
 ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, STDOUT)
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
